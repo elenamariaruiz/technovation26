@@ -10,10 +10,11 @@ import ProgressBar from "@/components/ProgressBar";
 import ContinueButton from "@/components/ContinueButton";
 import Confetti from "@/components/Confetti";
 import TipBox from "@/components/TipBox";
+import BlocksTheory from "@/components/BlocksTheory";
 
 const STORAGE_KEY = "misiones-appinventor";
 
-type Screen = "welcome" | "mission1" | "mission2" | "mission3" | "mission4" | "verify" | "reward";
+type Screen = "welcome" | "mission1" | "mission2" | "mission3_theory" | "mission3" | "mission4" | "verify" | "reward";
 
 // Mission colors as raw CSS values
 const MISSION_COLORS = {
@@ -228,16 +229,22 @@ const Index = () => {
     const mc = MISSION_COLORS[mNum as keyof typeof MISSION_COLORS];
     const tasksDone = state.tasks[mNum]?.filter(Boolean).length ?? 0;
     const allDone = allMissionTasksDone(mNum);
-    const nextScreen: Screen = missionIndex < 3
-      ? (`mission${missionIndex + 2}` as Screen)
-      : "verify";
+    const nextScreen: Screen = missionIndex === 1
+      ? "mission3_theory"
+      : missionIndex < 3
+        ? (`mission${missionIndex + 2}` as Screen)
+        : "verify";
     const nextLabel = missionIndex < 3
       ? `Siguiente: Misión ${missionIndex + 2}`
       : "Ir a verificación 🔍";
-    const prevScreen: Screen = missionIndex > 0
-      ? (`mission${missionIndex}` as Screen)
-      : "welcome";
-    const prevLabel = missionIndex > 0 ? `Misión ${missionIndex}` : "Inicio";
+    const prevScreen: Screen = missionIndex === 2
+      ? "mission3_theory"
+      : missionIndex > 0
+        ? (`mission${missionIndex}` as Screen)
+        : "welcome";
+    const prevLabel = missionIndex === 2 ? "Teoría de bloques" : missionIndex > 0 ? `Misión ${missionIndex}` : "Inicio";
+
+    const firstUncompletedIndex = state.tasks[mNum]?.findIndex((done) => !done) ?? 0;
 
     return (
       <div key={`mission${mNum}`} className="animate-fade-in">
@@ -257,19 +264,27 @@ const Index = () => {
         <TipBox type="info">{m.intro}</TipBox>
 
         <div className="space-y-2 mt-4">
-          {m.tasks.map((task, i) => (
-            <TaskItem
-              key={i}
-              checked={state.tasks[mNum]?.[i] ?? false}
-              onToggle={() => toggleTask(mNum, i)}
-              name={task.name}
-              description={task.desc}
-              tip={task.tip}
-              points={task.pts}
-              color={mc.color}
-              colorLight={mc.light}
-            />
-          ))}
+          {m.tasks.map((task, i) => {
+            const isLocked = i > 0 && !state.tasks[mNum]?.[i - 1];
+            const isExpanded = i === firstUncompletedIndex;
+
+            return (
+              <TaskItem
+                key={i}
+                index={i}
+                checked={state.tasks[mNum]?.[i] ?? false}
+                onToggle={() => toggleTask(mNum, i)}
+                name={task.name}
+                description={task.desc}
+                tip={task.tip}
+                points={task.pts}
+                color={mc.color}
+                colorLight={mc.light}
+                locked={isLocked}
+                expanded={isExpanded}
+              />
+            );
+          })}
         </div>
 
         <HintBox
@@ -300,6 +315,7 @@ const Index = () => {
       </div>
     );
   };
+
 
   return (
     <div className="min-h-screen bg-background relative">
@@ -376,6 +392,15 @@ const Index = () => {
         {/* ══════ MISIONES ══════ */}
         {currentScreen === "mission1" && <MissionScreen missionIndex={0} />}
         {currentScreen === "mission2" && <MissionScreen missionIndex={1} />}
+        {currentScreen === "mission3_theory" && (
+          <div key="theory" className="animate-fade-in">
+            <NavBar back="mission2" backLabel="Misión 2" />
+            <BlocksTheory />
+            <div className="mt-6">
+              <ContinueButton onClick={() => goTo("mission3")} label="¡Vamos a programar! 🧱" />
+            </div>
+          </div>
+        )}
         {currentScreen === "mission3" && <MissionScreen missionIndex={2} />}
         {currentScreen === "mission4" && <MissionScreen missionIndex={3} />}
 
