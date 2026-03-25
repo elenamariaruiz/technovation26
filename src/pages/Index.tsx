@@ -10,10 +10,11 @@ import ProgressBar from "@/components/ProgressBar";
 import ContinueButton from "@/components/ContinueButton";
 import Confetti from "@/components/Confetti";
 import TipBox from "@/components/TipBox";
+import BlocksTheory from "@/components/BlocksTheory";
 
 const STORAGE_KEY = "misiones-appinventor";
 
-type Screen = "welcome" | "mission1" | "mission2" | "mission3" | "mission4" | "verify" | "reward";
+type Screen = "welcome" | "mission1" | "mission2" | "mission3_theory" | "mission3" | "mission4" | "verify" | "reward";
 
 // Mission colors as raw CSS values
 const MISSION_COLORS = {
