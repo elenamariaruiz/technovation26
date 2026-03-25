@@ -453,6 +453,15 @@ const Index = () => {
         {/* ══════ MISIONES ══════ */}
         {currentScreen === "mission1" && <MissionScreen missionIndex={0} />}
         {currentScreen === "mission2" && <MissionScreen missionIndex={1} />}
+        {currentScreen === "mission3_theory" && (
+          <div key="theory" className="animate-fade-in">
+            <NavBar back="mission2" backLabel="Misión 2" />
+            <BlocksTheory />
+            <div className="mt-6">
+              <ContinueButton onClick={() => goTo("mission3")} label="¡Vamos a programar! 🧱" />
+            </div>
+          </div>
+        )}
         {currentScreen === "mission3" && <MissionScreen missionIndex={2} />}
         {currentScreen === "mission4" && <MissionScreen missionIndex={3} />}
 
