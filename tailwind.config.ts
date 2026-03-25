@@ -69,6 +69,30 @@ export default {
           DEFAULT: "hsl(var(--pink))",
           light: "hsl(var(--pink-light))",
         },
+        purple: {
+          DEFAULT: "hsl(var(--purple))",
+          light: "hsl(var(--purple-light))",
+        },
+        green: {
+          DEFAULT: "hsl(var(--green))",
+          light: "hsl(var(--green-light))",
+        },
+        "mission-pink": {
+          DEFAULT: "hsl(var(--mission-pink))",
+          light: "hsl(var(--mission-pink-light))",
+        },
+        "mission-purple": {
+          DEFAULT: "hsl(var(--mission-purple))",
+          light: "hsl(var(--mission-purple-light))",
+        },
+        "mission-blue": {
+          DEFAULT: "hsl(var(--mission-blue))",
+          light: "hsl(var(--mission-blue-light))",
+        },
+        "mission-green": {
+          DEFAULT: "hsl(var(--mission-green))",
+          light: "hsl(var(--mission-green-light))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

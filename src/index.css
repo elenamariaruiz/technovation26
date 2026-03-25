@@ -6,20 +6,20 @@
 
 @layer base {
   :root {
-    --background: 0 0% 99%;
-    --foreground: 220 13% 18%;
+    --background: 330 100% 99%;
+    --foreground: 0 0% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 13% 18%;
+    --card-foreground: 0 0% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 13% 18%;
+    --popover-foreground: 0 0% 18%;
 
-    --primary: 263 84% 58%;
+    --primary: 340 82% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 263 90% 96%;
-    --secondary-foreground: 263 84% 30%;
+    --secondary: 340 100% 96%;
+    --secondary-foreground: 340 82% 30%;
 
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 46%;
@@ -32,11 +32,21 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 263 84% 58%;
+    --ring: 340 82% 52%;
 
     --radius: 0.75rem;
 
-    /* Custom worksheet colors */
+    /* Mission colors */
+    --mission-pink: 340 82% 52%;
+    --mission-pink-light: 340 100% 97%;
+    --mission-purple: 270 100% 75%;
+    --mission-purple-light: 270 100% 97%;
+    --mission-blue: 213 90% 62%;
+    --mission-blue-light: 213 95% 95%;
+    --mission-green: 160 84% 42%;
+    --mission-green-light: 160 80% 95%;
+
+    /* Utility colors */
     --success: 160 84% 39%;
     --success-light: 149 80% 90%;
     --success-mid: 156 72% 67%;
@@ -45,15 +55,23 @@
     --amber-light: 48 96% 89%;
     --amber-mid: 48 94% 68%;
 
-    --blue: 217 91% 60%;
-    --blue-light: 214 95% 93%;
+    --blue: 213 90% 62%;
+    --blue-light: 213 95% 93%;
 
-    --pink: 330 81% 60%;
-    --pink-light: 330 100% 95%;
+    --pink: 340 82% 52%;
+    --pink-light: 340 100% 95%;
 
-    --gradient-header: linear-gradient(135deg, hsl(263 84% 58%), hsl(217 91% 60%));
-    --gradient-mission1: linear-gradient(135deg, hsl(263 84% 58%), hsl(263 77% 42%));
-    --gradient-mission2: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 47%));
+    --purple: 270 100% 75%;
+    --purple-light: 270 100% 95%;
+
+    --green: 160 84% 42%;
+    --green-light: 160 80% 93%;
+
+    --gradient-header: linear-gradient(135deg, hsl(340 82% 52%), hsl(270 100% 75%));
+    --gradient-mission1: linear-gradient(135deg, hsl(340 82% 52%), hsl(340 70% 65%));
+    --gradient-mission2: linear-gradient(135deg, hsl(270 100% 75%), hsl(270 80% 55%));
+    --gradient-mission3: linear-gradient(135deg, hsl(213 90% 62%), hsl(213 90% 48%));
+    --gradient-mission4: linear-gradient(135deg, hsl(160 84% 42%), hsl(160 74% 35%));
     --gradient-reward: linear-gradient(135deg, hsl(48 100% 97%), hsl(48 96% 89%));
 
     --font-display: 'Fredoka One', cursive;
@@ -77,6 +95,9 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
+    background-image:
+      radial-gradient(circle at 10% 20%, hsla(340, 82%, 52%, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, hsla(213, 90%, 62%, 0.06) 0%, transparent 50%);
   }
   h1, h2, h3 {
     font-family: var(--font-display);
