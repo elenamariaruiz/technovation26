@@ -229,16 +229,92 @@ const Index = () => {
     const mc = MISSION_COLORS[mNum as keyof typeof MISSION_COLORS];
     const tasksDone = state.tasks[mNum]?.filter(Boolean).length ?? 0;
     const allDone = allMissionTasksDone(mNum);
-    const nextScreen: Screen = missionIndex < 3
-      ? (`mission${missionIndex + 2}` as Screen)
-      : "verify";
+    const nextScreen: Screen = missionIndex === 1
+      ? "mission3_theory"
+      : missionIndex < 3
+        ? (`mission${missionIndex + 2}` as Screen)
+        : "verify";
     const nextLabel = missionIndex < 3
       ? `Siguiente: Misión ${missionIndex + 2}`
       : "Ir a verificación 🔍";
-    const prevScreen: Screen = missionIndex > 0
-      ? (`mission${missionIndex}` as Screen)
-      : "welcome";
-    const prevLabel = missionIndex > 0 ? `Misión ${missionIndex}` : "Inicio";
+    const prevScreen: Screen = missionIndex === 2
+      ? "mission3_theory"
+      : missionIndex > 0
+        ? (`mission${missionIndex}` as Screen)
+        : "welcome";
+    const prevLabel = missionIndex === 2 ? "Teoría de bloques" : missionIndex > 0 ? `Misión ${missionIndex}` : "Inicio";
+
+    const firstUncompletedIndex = state.tasks[mNum]?.findIndex((done) => !done) ?? 0;
+
+    return (
+      <div key={`mission${mNum}`} className="animate-fade-in">
+        <NavBar back={prevScreen} backLabel={prevLabel} />
+
+        <MissionHeader
+          number={mNum}
+          emoji={m.emoji}
+          title={m.title}
+          subtitle={m.subtitle}
+          points={m.points}
+          earnedPoints={getMissionScore(mNum)}
+          verified={state.verified}
+          optional={m.optional}
+        />
+
+        <TipBox type="info">{m.intro}</TipBox>
+
+        <div className="space-y-2 mt-4">
+          {m.tasks.map((task, i) => {
+            const isLocked = i > 0 && !state.tasks[mNum]?.[i - 1];
+            const isExpanded = i === firstUncompletedIndex;
+
+            return (
+              <TaskItem
+                key={i}
+                index={i}
+                checked={state.tasks[mNum]?.[i] ?? false}
+                onToggle={() => toggleTask(mNum, i)}
+                name={task.name}
+                description={task.desc}
+                tip={task.tip}
+                points={task.pts}
+                color={mc.color}
+                colorLight={mc.light}
+                locked={isLocked}
+                expanded={isExpanded}
+              />
+            );
+          })}
+        </div>
+
+        <HintBox
+          hints={m.hints}
+          costs={m.hintCosts}
+          usedHints={state.hints[mNum] || [false, false, false]}
+          onUseHint={(i) => useHint(mNum, i)}
+          missionColor={mc.color}
+        />
+
+        <ProgressBar current={tasksDone} max={m.tasks.length} />
+
+        {allDone && (
+          <div className="animate-bounce-in text-center my-4">
+            <span className="text-3xl">{m.emoji}✅</span>
+            <p className="font-display text-sm mt-1" style={{ color: mc.color }}>¡Todos los pasos completados!</p>
+          </div>
+        )}
+
+        <div className="mt-6">
+          <ContinueButton onClick={() => goTo(nextScreen)} label={nextLabel} disabled={!allDone} />
+          {!allDone && (
+            <p className="text-xs text-center text-muted-foreground mt-2">
+              Completa todos los pasos para continuar ({tasksDone}/{m.tasks.length})
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  };
 
     return (
       <div key={`mission${mNum}`} className="animate-fade-in">
