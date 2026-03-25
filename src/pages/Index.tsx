@@ -316,9 +316,6 @@ const Index = () => {
     );
   };
 
-    return (
-      <div key={`mission${mNum}`} className="animate-fade-in">
-        <NavBar back={prevScreen} backLabel={prevLabel} />
 
         <MissionHeader
           number={mNum}
