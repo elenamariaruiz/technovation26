@@ -317,64 +317,6 @@ const Index = () => {
   };
 
 
-        <MissionHeader
-          number={mNum}
-          emoji={m.emoji}
-          title={m.title}
-          subtitle={m.subtitle}
-          points={m.points}
-          earnedPoints={getMissionScore(mNum)}
-          verified={state.verified}
-          optional={m.optional}
-        />
-
-        <TipBox type="info">{m.intro}</TipBox>
-
-        <div className="space-y-2 mt-4">
-          {m.tasks.map((task, i) => (
-            <TaskItem
-              key={i}
-              checked={state.tasks[mNum]?.[i] ?? false}
-              onToggle={() => toggleTask(mNum, i)}
-              name={task.name}
-              description={task.desc}
-              tip={task.tip}
-              points={task.pts}
-              color={mc.color}
-              colorLight={mc.light}
-            />
-          ))}
-        </div>
-
-        <HintBox
-          hints={m.hints}
-          costs={m.hintCosts}
-          usedHints={state.hints[mNum] || [false, false, false]}
-          onUseHint={(i) => useHint(mNum, i)}
-          missionColor={mc.color}
-        />
-
-        <ProgressBar current={tasksDone} max={m.tasks.length} />
-
-        {allDone && (
-          <div className="animate-bounce-in text-center my-4">
-            <span className="text-3xl">{m.emoji}✅</span>
-            <p className="font-display text-sm mt-1" style={{ color: mc.color }}>¡Todos los pasos completados!</p>
-          </div>
-        )}
-
-        <div className="mt-6">
-          <ContinueButton onClick={() => goTo(nextScreen)} label={nextLabel} disabled={!allDone} />
-          {!allDone && (
-            <p className="text-xs text-center text-muted-foreground mt-2">
-              Completa todos los pasos para continuar ({tasksDone}/{m.tasks.length})
-            </p>
-          )}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen bg-background relative">
       <FloatingEmojis />
