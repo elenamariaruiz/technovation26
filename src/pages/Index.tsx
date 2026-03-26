@@ -218,8 +218,8 @@ const Index = () => {
   };
 
   const totalScore = state.verified
-    ? Math.max(0, MISSIONS.reduce((sum, m) => sum + m.points, 0) - [1, 2, 3, 4].reduce((sum, n) => sum + (state.hints[n] || []).reduce((s, used, i) => s + (used ? MISSIONS[n - 1].hintCosts[i] : 0), 0), 0))
-    : [1, 2, 3, 4].reduce((sum, n) => sum + getMissionScore(n), 0);
+    ? Math.max(0, MISSIONS.reduce((sum, m) => sum + m.points, 0) - [1, 2, 3, 4, 5].reduce((sum, n) => sum + (state.hints[n] || []).reduce((s, used, i) => s + (used ? MISSIONS[n - 1].hintCosts[i] : 0), 0), 0))
+    : [1, 2, 3, 4, 5].reduce((sum, n) => sum + getMissionScore(n), 0);
 
   const allMissionTasksDone = (mNum: number) => state.tasks[mNum]?.every(Boolean) ?? false;
 
