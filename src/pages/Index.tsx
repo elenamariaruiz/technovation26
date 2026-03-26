@@ -12,74 +12,55 @@ import Confetti from "@/components/Confetti";
 import TipBox from "@/components/TipBox";
 import BlocksTheory from "@/components/BlocksTheory";
 
-const STORAGE_KEY = "misiones-appinventor";
+const STORAGE_KEY = "misiones-appinventor-v3";
 
-type Screen = "welcome" | "mission1" | "mission2" | "mission3_theory" | "mission3" | "mission4" | "mission5" | "verify" | "reward";
+type Screen = "welcome" | "mission1_theory" | "mission1" | "mission2" | "mission3" | "mission4" | "verify" | "reward";
 
 // Mission colors as raw CSS values
 const MISSION_COLORS = {
-  1: { color: "#E11D6D", light: "hsl(340 100% 97%)" },
+  1: { color: "#E8870E", light: "hsl(36 100% 96%)" },
   2: { color: "#B35CFF", light: "hsl(270 100% 97%)" },
-  3: { color: "#E8870E", light: "hsl(36 100% 96%)" },
-  4: { color: "#3B8BF5", light: "hsl(213 95% 95%)" },
-  5: { color: "#0CAE82", light: "hsl(160 80% 95%)" },
+  3: { color: "#3B8BF5", light: "hsl(213 95% 95%)" },
+  4: { color: "#0CAE82", light: "hsl(160 80% 95%)" },
 };
 
 // Task definitions per mission
 const MISSIONS = [
   {
-    num: 1, emoji: "🎨", title: "Diseño de Lista_Incidencias", subtitle: "¡Tu primera pantalla! · 25 pts",
-    points: 25, intro: "¡Esta es tu primera pantalla! Aquí aparecerá la lista de incidencias. Vamos a construirla juntando piezas como si fuera un puzzle 🧩",
-    tasks: [
-      { name: "📱 Tarea 1 — Crea una nueva pantalla", desc: 'Asegúrate de que la pantalla se llama <strong>Screen1</strong>. Si ya existe, ¡genial, ya tienes un punto!', tip: 'Mira arriba en "Screens" y comprueba el nombre.', pts: 5 },
-      { name: "📋 Tarea 2 — Añade una DisposiciónVertical", desc: 'Arrastra una <strong>DisposiciónVertical</strong> al centro de la pantalla. Esto es como el esqueleto que ordena todo.', tip: 'Está en la sección "Disposición" del panel de componentes.', pts: 5 },
-      { name: "📜 Tarea 3 — Añade un VisorDeLista", desc: 'Dentro de la disposición, arrastra un <strong>VisorDeLista</strong>. Aquí es donde aparecerán las incidencias guardadas.', tip: 'Está en la sección "Interfaz de Usuario".', pts: 5 },
-      { name: '🔘 Tarea 4 — Añade el botón "Crear Incidencia"', desc: 'Arrastra un <strong>Botón</strong> debajo del visor. Cámbiale el texto a <em>"Crear Incidencia"</em> y ponle el nombre <strong>btn_crear_incidencia</strong>.', tip: 'Cambia el nombre en "Propiedades" → "Nombre del componente".', pts: 5 },
-      { name: "🗄️ Tarea 5 — Añade TinyBD (base de datos)", desc: 'Arrastra un componente <strong>TinyBD</strong> a la pantalla. Aparecerá abajo en la zona de componentes invisibles. ¡Este guardará todos los datos!', tip: 'Está en la sección "Almacenamiento".', pts: 5 },
-    ],
-    hints: [
-      "La DisposiciónVertical está en el panel izquierdo → sección Disposición. Arrástrala al centro del teléfono.",
-      "El VisorDeLista se encuentra en Interfaz de Usuario. Arrástralo DENTRO de la DisposiciónVertical.",
-      "Para renombrar el botón: selecciónalo → abajo a la derecha en Propiedades → cambia el campo 'Renombrar'.",
-    ],
-    hintCosts: [5, 5, 10],
-  },
-  {
-    num: 2, emoji: "✏️", title: "Diseño de Crear_Incidencia", subtitle: "Opcional · Solo si no la tienes aún · 20 pts",
-    points: 20, optional: true,
-    intro: "Esta es la pantalla donde se escribe una nueva incidencia. ¡Es como rellenar una ficha especial! Si ya la tienes hecha, ¡suma los 20 puntos directamente! 🎉",
-    tasks: [
-      { name: "➕ Tarea 1 — Crea la pantalla nueva", desc: 'Pulsa el botón <strong>"+"</strong> en la parte superior (junto a "Screens") y llama a la nueva pantalla exactamente <strong>Crear_Incidencia</strong>.', tip: "¡Las mayúsculas, minúsculas y guiones bajos importan!", pts: 4 },
-      { name: "🏷️ Tarea 2 — Añade etiquetas y campos de texto", desc: 'Coloca <strong>Etiqueta1</strong> + <strong>CampoDeTexto1</strong> para el título, y <strong>Etiqueta2</strong> + <strong>CampoDeTexto2</strong> para la localización.', tip: 'Cambia el texto de las etiquetas a "Título" y "Localización".', pts: 5 },
-      { name: "📸 Tarea 3 — Añade el SelectorDeImagen", desc: 'Arrastra un <strong>SelectorDeImagen</strong> para que la usuaria pueda elegir una foto de la incidencia.', tip: 'Está en "Multimedia".', pts: 4 },
-      { name: "💾 Tarea 4 — Añade el botón de guardar y la TinyBD", desc: 'Añade un <strong>Botón</strong> con el texto "Añadir" y un componente <strong>TinyBD</strong> invisible. También necesitas un <strong>VisorDeLista</strong> invisible para crear los elementos.', tip: "El VisorDeLista puede estar oculto; solo lo usamos para sus bloques.", pts: 7 },
-    ],
-    hints: [
-      'Para crear la pantalla: arriba en la barra, junto a "Screen1", hay un botón "+". Escribe exactamente Crear_Incidencia.',
-      "Las Etiquetas y CamposDeTexto están en Interfaz de Usuario. Pon primero la Etiqueta y debajo el CampoDeTexto.",
-      'El SelectorDeImagen está en la sección "Multimedia" del panel izquierdo.',
-    ],
-    hintCosts: [5, 5, 10],
-  },
-  {
-    num: 3, emoji: "🚪", title: "Abrir Otras Pantallas", subtitle: "Tu primer bloque de programación · 15 pts",
-    points: 15,
+    num: 1, emoji: "🚪", title: "Abrir Otras Pantallas", subtitle: "Tu primer bloque de programación · 19 pts",
+    points: 19,
+    image: "/flujo-pantallas.jpg",
     intro: "¡Vamos a hacer que el botón 'Crear Incidencia' de la pantalla Lista_Incidencias abra la pantalla Crear_Incidencia! Es como ponerle una puerta mágica al botón 🚪✨",
     tasks: [
       { name: "🧱 Tarea 1 — Abre el editor de bloques", desc: 'Asegúrate de estar en la pantalla <strong>Screen1</strong> (Lista_Incidencias). Arriba a la derecha, pulsa el botón <strong>"Bloques"</strong> para abrir el editor de programación.', tip: 'Si ves el diseño del teléfono, es que estás en "Diseñador". Cambia a "Bloques".', pts: 3 },
       { name: "🔘 Tarea 2 — Bloque cuando btn_crear_incidencia.Clic", desc: 'En el panel izquierdo, busca <strong>btn_crear_incidencia</strong> y arrastra el bloque <strong>cuando btn_crear_incidencia.Clic</strong> al área de trabajo.', tip: 'El bloque está en la categoría del botón, en el panel izquierdo bajo tus componentes.', pts: 4 },
       { name: "📲 Tarea 3 — Añade 'abrir otra pantalla'", desc: 'Ve a la sección <strong>Control</strong> del panel izquierdo. Arrastra el bloque <strong>abrir otra pantalla nombre de pantalla</strong> y colócalo DENTRO del bloque del botón.', tip: 'Está en "Control" → busca "abrir otra pantalla nombre de pantalla".', pts: 4 },
       { name: '✏️ Tarea 4 — Escribe el nombre de la pantalla', desc: 'En el hueco del nombre, conecta un bloque de <strong>Texto</strong> (comillas) y escribe exactamente <strong>"Crear_Incidencia"</strong>. ¡Cuidado con las mayúsculas y el guion bajo!', tip: 'El bloque de texto está en la sección "Texto" → es el que tiene comillas vacías "".', pts: 4 },
+      { name: '❌ Tarea 5 — Cierra la pantalla con Aceptar y Salir', desc: 'Cambia a la pantalla <strong>Crear_Incidencia</strong> y abre los bloques. De momento los botones <em>Aceptar</em> y <em>Salir</em> solo cerrarán la pantalla: busca cada botón en el panel izquierdo, arrastra el bloque <strong>cuando BtnAceptar.Clic</strong> (y luego <strong>cuando BtnSalir.Clic</strong>) al área de trabajo, y dentro de cada uno coloca el bloque <strong>cerrar pantalla</strong> de la sección <strong>Control</strong>.', tip: 'El bloque "cerrar pantalla" está en Control. Repite los mismos pasos para cada botón.', pts: 4 },
     ],
     hints: [
-      'El botón "Bloques" está arriba a la derecha, al lado de "Diseñador". Haz clic para cambiar al editor de programación.',
-      'En el panel izquierdo, busca tu botón (btn_crear_incidencia). Al hacer clic aparecerán todos sus bloques disponibles. Elige "cuando btn_crear_incidencia.Clic".',
-      'En "Control", arrastra "abrir otra pantalla nombre de pantalla" dentro del bloque Clic. Luego ve a "Texto", arrastra un bloque de comillas y escribe Crear_Incidencia.',
+      { text: '', image: "/hint-abrir-pantalla.jpg" },
+      { text: '', image: "/hint-cerrar-pantalla.jpg" },
+    ],
+    hintCosts: [5, 10],
+  },
+  {
+    num: 2, emoji: "🏠", title: "Programación de Lista_Incidencias (I)", subtitle: "Variables y carga inicial · 15 pts",
+    points: 15,
+    intro: "¡Vamos a hacer que Screen1 cargue las incidencias al abrirse! Primero crearemos la variable que las guarda y luego le diremos a la app qué mostrar al iniciar 🏠",
+    tasks: [
+      { name: '📦 Tarea 1 — Crea la variable "listaIncidencias"', desc: 'Crea un bloque <strong>inicializar global listaIncidencias como</strong> con una lista vacía. Esta guardará todas las incidencias mientras la app está abierta.', tip: "Está en 'Variables' → arrastra 'inicializar global nombre como' y cámbialo a listaIncidencias.", pts: 5 },
+      { name: '🔌 Tarea 2 — Bloque "Al inicializar Screen1"', desc: 'Crea el bloque <strong>cuando Screen1.Inicializar</strong>. Carga la lista desde TinyBD con etiqueta <em>"Incidencias"</em>. Si está vacía, añade dos ejemplos ("Basura en la Playa / A Coruña" y "Señal Rota / Arteixo"). Al final, muéstralos con <strong>VisorDeLista1.AddItems</strong>.', tip: 'Usa el bloque "¿está vacía la lista?" para comprobar si hay datos.', pts: 10 },
+    ],
+    hints: [
+      { text: 'Para crear la variable global: "Variables" → arrastra "inicializar global nombre como" y cámbialo a "listaIncidencias".' },
+      { text: 'En el bloque Inicializar, usa "si está vacía la lista" de la sección "Listas". Para añadir ejemplos, usa "insertar elemento en lista" dos veces.' },
+      { text: 'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar.' },
     ],
     hintCosts: [5, 5, 10],
   },
   {
-    num: 4, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 25 pts",
+    num: 3, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 25 pts",
     points: 25,
     intro: "¡Hora de dar vida a los bloques! Ve a la pantalla Crear_Incidencia y abre el editor de bloques. Vamos a decirle a la app qué hacer cuando alguien añade una incidencia 🧱",
     tasks: [
@@ -90,26 +71,24 @@ const MISSIONS = [
       { name: "💾 Tarea 5 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Incidencias"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
     ],
     hints: [
-      'Para crear la variable: en el panel izquierdo, clica "Variables" y arrastra "inicializar global nombre como". Cambia "nombre" por "lista".',
-      'El bloque "cuando Crear_Incidencia.Inicializar" está en el panel izquierdo si clicas en "Crear_Incidencia". Dentro, usa "poner global lista como" y conecta TinyBD1.ObtenerValor.',
-      'Para insertar en lista: ve a "Listas" → "insertar elemento en lista". El índice es "longitud de lista" + 1.',
+      { text: 'Para crear la variable: en el panel izquierdo, clica "Variables" y arrastra "inicializar global nombre como". Cambia "nombre" por "lista".' },
+      { text: 'El bloque "cuando Crear_Incidencia.Inicializar" está en el panel izquierdo si clicas en "Crear_Incidencia". Dentro, usa "poner global lista como" y conecta TinyBD1.ObtenerValor.' },
+      { text: 'Para insertar en lista: ve a "Listas" → "insertar elemento en lista". El índice es "longitud de lista" + 1.' },
     ],
     hintCosts: [5, 5, 10],
   },
   {
-    num: 5, emoji: "🏠", title: "Programación de Lista_Incidencias", subtitle: "¡La última misión! · 30 pts",
-    points: 30,
-    intro: "¡La última misión! Vuelve a Screen1 y abre los bloques. Aquí haremos que la lista se cargue sola al entrar y que todo se actualice al volver de crear una incidencia 🏁",
+    num: 4, emoji: "🔄", title: "Programación de Lista_Incidencias (II)", subtitle: "¡La última misión! · 15 pts",
+    points: 15,
+    intro: "¡Último paso! Vuelve a Screen1 y haz que la lista se actualice sola al volver de crear una incidencia. Luego prueba que todo funciona 🏁",
     tasks: [
-      { name: '📦 Tarea 1 — Crea la variable "listaIncidencias"', desc: 'Crea un bloque <strong>inicializar global listaIncidencias como</strong> con una lista vacía. Esta guardará todas las incidencias mientras la app está abierta.', tip: "Es igual que hiciste en la misión anterior pero con otro nombre.", pts: 5 },
-      { name: '🔌 Tarea 2 — Bloque "Al inicializar Screen1"', desc: 'Crea el bloque <strong>cuando Screen1.Inicializar</strong>. Carga la lista desde TinyBD con etiqueta <em>"Incidencias"</em>. Si está vacía, añade dos ejemplos ("Basura en la Playa / A Coruña" y "Señal Rota / Arteixo"). Al final, muéstralos con <strong>VisorDeLista1.AddItems</strong>.', tip: 'Usa el bloque "¿está vacía la lista?" para comprobar si hay datos.', pts: 10 },
-      { name: "🔄 Tarea 3 — Recarga la lista al volver", desc: 'Crea el bloque <strong>cuando Screen1.OtraPantallaCerrada</strong>. Dentro, vuelve a leer TinyBD y actualiza <strong>VisorDeLista1.AddItems</strong> con la lista nueva para que aparezca la incidencia recién creada.', tip: 'Este bloque es el "truco" que hace que la app se actualice sola al volver.', pts: 10 },
-      { name: "🧪 Tarea 4 — ¡Prueba tu app!", desc: 'Conecta tu dispositivo o usa el emulador. Comprueba que al abrir la app aparecen los ejemplos, que el botón abre Crear_Incidencia, y que al crear una nueva incidencia aparece en la lista al volver.', tip: "Usa AI Companion o el emulador para probar.", pts: 5 },
+      { name: "🔄 Tarea 1 — Recarga la lista al volver", desc: 'Crea el bloque <strong>cuando Screen1.OtraPantallaCerrada</strong>. Dentro, vuelve a leer TinyBD y actualiza <strong>VisorDeLista1.AddItems</strong> con la lista nueva para que aparezca la incidencia recién creada.', tip: 'Este bloque es el "truco" que hace que la app se actualice sola al volver.', pts: 10 },
+      { name: "🧪 Tarea 2 — ¡Prueba tu app!", desc: 'Conecta tu dispositivo o usa el emulador. Comprueba que al abrir la app aparecen los ejemplos, que el botón abre Crear_Incidencia, y que al crear una nueva incidencia aparece en la lista al volver.', tip: "Usa AI Companion o el emulador para probar.", pts: 5 },
     ],
     hints: [
-      'Para crear la variable global: "Variables" → arrastra "inicializar global nombre como" y cámbialo a "listaIncidencias".',
-      'En el bloque Inicializar, usa "si está vacía la lista" de la sección "Listas". Para añadir ejemplos, usa "insertar elemento en lista" dos veces.',
-      'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar.',
+      { text: 'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar.' },
+      { text: 'Para probar: en App Inventor, ve a "Conectar" → "AI Companion". Abre la app en tu móvil con el código QR.' },
+      { text: 'Si la lista no se actualiza al volver, comprueba que el bloque OtraPantallaCerrada lee TinyBD y llama a VisorDeLista1.AddItems.' },
     ],
     hintCosts: [5, 5, 10],
   },
@@ -120,28 +99,21 @@ const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 115
 // Verification items per mission
 const verifItems: Record<number, { id: string; text: string }[]> = {
   1: [
-    { id: "v1_1", text: "Screen1 tiene una DisposiciónVertical con un VisorDeLista dentro" },
-    { id: "v1_2", text: "El botón 'Crear Incidencia' (btn_crear_incidencia) aparece debajo del visor" },
-    { id: "v1_3", text: "El componente TinyBD aparece en la zona de componentes invisibles" },
+    { id: "v1_1", text: "El bloque 'cuando btn_crear_incidencia.Clic' existe y abre 'Crear_Incidencia'" },
+    { id: "v1_2", text: "BtnAceptar.Clic y BtnSalir.Clic tienen cada uno un bloque 'cerrar pantalla'" },
   ],
   2: [
-    { id: "v2_1", text: "Existe la pantalla Crear_Incidencia con etiquetas y campos de texto" },
-    { id: "v2_2", text: "Hay un SelectorDeImagen y un botón 'Añadir'" },
-    { id: "v2_3", text: "TinyBD y VisorDeLista invisibles están presentes" },
+    { id: "v2_1", text: "Variable 'listaIncidencias' existe con lista vacía" },
+    { id: "v2_2", text: "Al inicializar Screen1 se cargan datos y se muestran ejemplos si está vacía" },
   ],
   3: [
-    { id: "v3_1", text: "El bloque 'cuando btn_crear_incidencia.Clic' existe" },
-    { id: "v3_2", text: "Dentro tiene 'abrir otra pantalla' con el nombre 'Crear_Incidencia'" },
+    { id: "v3_1", text: "La variable global 'lista' se inicializa con lista vacía" },
+    { id: "v3_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
+    { id: "v3_3", text: "Al pulsar el botón: comprueba campo, inserta en lista, guarda y cierra" },
   ],
   4: [
-    { id: "v4_1", text: "La variable global 'lista' se inicializa con lista vacía" },
-    { id: "v4_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
-    { id: "v4_3", text: "Al pulsar el botón: comprueba campo, inserta en lista, guarda y cierra" },
-  ],
-  5: [
-    { id: "v5_1", text: "Variable 'listaIncidencias' existe con lista vacía" },
-    { id: "v5_2", text: "Al inicializar Screen1 se cargan datos y se muestran ejemplos si está vacía" },
-    { id: "v5_3", text: "Al volver de Crear_Incidencia se recarga la lista automáticamente" },
+    { id: "v4_1", text: "Al volver de Crear_Incidencia se recarga la lista automáticamente" },
+    { id: "v4_2", text: "La app funciona de extremo a extremo: crear incidencia aparece en la lista" },
   ],
 };
 
@@ -159,17 +131,15 @@ const defaultState: State = {
   currentScreen: "welcome",
   tasks: {
     1: [false, false, false, false, false],
-    2: [false, false, false, false],
-    3: [false, false, false, false],
-    4: [false, false, false, false, false],
-    5: [false, false, false, false],
+    2: [false, false],
+    3: [false, false, false, false, false],
+    4: [false, false],
   },
   hints: {
-    1: [false, false, false],
+    1: [false, false],
     2: [false, false, false],
     3: [false, false, false],
     4: [false, false, false],
-    5: [false, false, false],
   },
   verif: {},
   verified: false,
@@ -179,7 +149,14 @@ const Index = () => {
   const [state, setState] = useState<State>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? { ...defaultState, ...JSON.parse(saved) } : defaultState;
+      if (!saved) return defaultState;
+      const parsed = JSON.parse(saved);
+      return {
+        ...defaultState,
+        ...parsed,
+        tasks: { ...defaultState.tasks, ...parsed.tasks },
+        hints: { ...defaultState.hints, ...parsed.hints },
+      };
     } catch {
       return defaultState;
     }
@@ -198,28 +175,31 @@ const Index = () => {
   };
 
   const toggleTask = (mission: number, i: number) => {
-    const tasks = { ...state.tasks, [mission]: [...state.tasks[mission]] };
-    tasks[mission][i] = !tasks[mission][i];
-    update({ tasks });
+    const current = state.tasks[mission] ?? [...defaultState.tasks[mission as keyof typeof defaultState.tasks]];
+    const updated = [...current];
+    updated[i] = !updated[i];
+    update({ tasks: { ...state.tasks, [mission]: updated } });
   };
 
   const useHint = (mission: number, i: number) => {
-    const hints = { ...state.hints, [mission]: [...state.hints[mission]] };
-    hints[mission][i] = true;
-    update({ hints });
+    const current = state.hints[mission] ?? [...defaultState.hints[mission as keyof typeof defaultState.hints]];
+    const updated = [...current];
+    updated[i] = true;
+    update({ hints: { ...state.hints, [mission]: updated } });
   };
 
   // Calculate scores
   const getMissionScore = (mNum: number) => {
     const mission = MISSIONS[mNum - 1];
+    if (!mission) return 0;
     const taskPts = mission.tasks.reduce((sum, t, i) => sum + (state.tasks[mNum]?.[i] ? t.pts : 0), 0);
-    const hintPenalty = (state.hints[mNum] || []).reduce((sum, used, i) => sum + (used ? mission.hintCosts[i] : 0), 0);
+    const hintPenalty = (state.hints[mNum] || []).reduce((sum, used, i) => sum + (used ? (mission.hintCosts[i] ?? 0) : 0), 0);
     return Math.max(0, taskPts - hintPenalty);
   };
 
   const totalScore = state.verified
-    ? Math.max(0, MISSIONS.reduce((sum, m) => sum + m.points, 0) - [1, 2, 3, 4, 5].reduce((sum, n) => sum + (state.hints[n] || []).reduce((s, used, i) => s + (used ? MISSIONS[n - 1].hintCosts[i] : 0), 0), 0))
-    : [1, 2, 3, 4, 5].reduce((sum, n) => sum + getMissionScore(n), 0);
+    ? Math.max(0, MISSIONS.reduce((sum, m) => sum + m.points, 0) - [1, 2, 3, 4].reduce((sum, n) => sum + (state.hints[n] || []).reduce((s, used, i) => s + (used ? (MISSIONS[n - 1]?.hintCosts[i] ?? 0) : 0), 0), 0))
+    : [1, 2, 3, 4].reduce((sum, n) => sum + getMissionScore(n), 0);
 
   const allMissionTasksDone = (mNum: number) => state.tasks[mNum]?.every(Boolean) ?? false;
 
@@ -253,21 +233,17 @@ const Index = () => {
     const mc = MISSION_COLORS[mNum as keyof typeof MISSION_COLORS];
     const tasksDone = state.tasks[mNum]?.filter(Boolean).length ?? 0;
     const allDone = allMissionTasksDone(mNum);
-    // Navigation: mission2 → mission3_theory → mission3 → mission4 → mission5 → verify
-    const nextScreen: Screen = missionIndex === 1
-      ? "mission3_theory"
-      : missionIndex < 4
-        ? (`mission${missionIndex + 2}` as Screen)
-        : "verify";
-    const nextLabel = missionIndex < 4
+    // Navigation: welcome → mission1_theory → mission1 → mission2 → mission3 → mission4 → verify
+    const nextScreen: Screen = missionIndex < 3
+      ? (`mission${missionIndex + 2}` as Screen)
+      : "verify";
+    const nextLabel = missionIndex < 3
       ? `Siguiente: Misión ${missionIndex + 2}`
       : "Ir a verificación 🔍";
-    const prevScreen: Screen = missionIndex === 2
-      ? "mission3_theory"
-      : missionIndex > 0
-        ? (`mission${missionIndex}` as Screen)
-        : "welcome";
-    const prevLabel = missionIndex === 2 ? "Teoría de bloques" : missionIndex > 0 ? `Misión ${missionIndex}` : "Inicio";
+    const prevScreen: Screen = missionIndex === 0
+      ? "mission1_theory"
+      : (`mission${missionIndex}` as Screen);
+    const prevLabel = missionIndex === 0 ? "Teoría de bloques" : `Misión ${missionIndex}`;
 
     const firstUncompletedIndex = state.tasks[mNum]?.findIndex((done) => !done) ?? 0;
 
@@ -287,6 +263,12 @@ const Index = () => {
         />
 
         <TipBox type="info">{m.intro}</TipBox>
+
+        {(m as any).image && (
+          <div className="mt-3 rounded-xl overflow-hidden border border-muted">
+            <img src={(m as any).image} alt="Flujo entre pantallas" className="w-full object-contain" />
+          </div>
+        )}
 
         <div className="space-y-2 mt-4">
           {m.tasks.map((task, i) => {
@@ -402,7 +384,7 @@ const Index = () => {
             </div>
 
             <ContinueButton
-              onClick={() => goTo("mission1")}
+              onClick={() => goTo("mission1_theory")}
               label="¡Empezar!"
               disabled={!state.name.trim()}
             />
@@ -415,25 +397,24 @@ const Index = () => {
         )}
 
         {/* ══════ MISIONES ══════ */}
-        {currentScreen === "mission1" && <MissionScreen missionIndex={0} />}
-        {currentScreen === "mission2" && <MissionScreen missionIndex={1} />}
-        {currentScreen === "mission3_theory" && (
+        {currentScreen === "mission1_theory" && (
           <div key="theory" className="animate-fade-in">
-            <NavBar back="mission2" backLabel="Misión 2" />
+            <NavBar back="welcome" backLabel="Inicio" />
             <BlocksTheory />
             <div className="mt-6">
-              <ContinueButton onClick={() => goTo("mission3")} label="¡Vamos a programar! 🧱" />
+              <ContinueButton onClick={() => goTo("mission1")} label="¡Vamos a programar! 🧱" />
             </div>
           </div>
         )}
+        {currentScreen === "mission1" && <MissionScreen missionIndex={0} />}
+        {currentScreen === "mission2" && <MissionScreen missionIndex={1} />}
         {currentScreen === "mission3" && <MissionScreen missionIndex={2} />}
         {currentScreen === "mission4" && <MissionScreen missionIndex={3} />}
-        {currentScreen === "mission5" && <MissionScreen missionIndex={4} />}
 
         {/* ══════ VERIFICACIÓN ══════ */}
         {currentScreen === "verify" && (
           <div key="verify" className="animate-fade-in">
-            <NavBar back="mission5" backLabel="Misión 5" />
+            <NavBar back="mission4" backLabel="Misión 4" />
 
             <div className="text-center mb-6">
               <div className="text-5xl mb-2 animate-float">🔍</div>

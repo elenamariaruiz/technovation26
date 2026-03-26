@@ -1,7 +1,12 @@
 import { useState } from "react";
 
+interface Hint {
+  text: string;
+  image?: string;
+}
+
 interface HintBoxProps {
-  hints: string[];
+  hints: Hint[];
   costs: number[];
   usedHints: boolean[];
   onUseHint: (index: number) => void;
@@ -28,9 +33,16 @@ const HintBox = ({ hints, costs, usedHints, onUseHint, missionColor }: HintBoxPr
           <div key={i} className="rounded-lg bg-card border border-border p-2.5">
             {usedHints[i] ? (
               <div className="text-xs text-muted-foreground">
-                <span className="font-bold" style={{ color: missionColor }}>Pista {i + 1}:</span>{" "}
-                {hint}
+                <span className="font-bold" style={{ color: missionColor }}>Pista {i + 1}:</span>
                 <span className="text-destructive text-[10px] ml-1">(-{costs[i]} pts)</span>
+                {hint.image ? (
+                  <div className="mt-2">
+                    <p className="font-bold text-[11px] mb-1" style={{ color: missionColor }}>La programación quedaría así:</p>
+                    <img src={hint.image} alt={`Pista ${i + 1}`} className="rounded-lg border border-border w-full object-contain" />
+                  </div>
+                ) : (
+                  <span className="ml-1">{hint.text}</span>
+                )}
               </div>
             ) : (
               <div className="flex items-center justify-between gap-2">

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find . -type f -name *mission* -o -type f -name *misión*)",
+      "Bash(npm run:*)",
+      "Bash(npx vite:*)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(cp \"C:/Users/Edu/Downloads/cerrar_pantalla.jpg\" \"C:/Users/Edu/Documents/technovation26/public/hint-cerrar-pantalla.jpg\")",
+      "Bash(cp \"C:/Users/Edu/Downloads/abrir_pantalla.jpeg\" \"C:/Users/Edu/Documents/technovation26/public/hint-abrir-pantalla.jpg\")"
+    ]
+  }
+}
