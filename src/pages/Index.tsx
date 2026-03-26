@@ -433,7 +433,7 @@ const Index = () => {
         {/* ══════ VERIFICACIÓN ══════ */}
         {currentScreen === "verify" && (
           <div key="verify" className="animate-fade-in">
-            <NavBar back="mission4" backLabel="Misión 4" />
+            <NavBar back="mission5" backLabel="Misión 5" />
 
             <div className="text-center mb-6">
               <div className="text-5xl mb-2 animate-float">🔍</div>
