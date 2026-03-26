@@ -428,6 +428,7 @@ const Index = () => {
         )}
         {currentScreen === "mission3" && <MissionScreen missionIndex={2} />}
         {currentScreen === "mission4" && <MissionScreen missionIndex={3} />}
+        {currentScreen === "mission5" && <MissionScreen missionIndex={4} />}
 
         {/* ══════ VERIFICACIÓN ══════ */}
         {currentScreen === "verify" && (
