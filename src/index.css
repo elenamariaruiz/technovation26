@@ -70,8 +70,9 @@
     --gradient-header: linear-gradient(135deg, hsl(340 82% 52%), hsl(270 100% 75%));
     --gradient-mission1: linear-gradient(135deg, hsl(340 82% 52%), hsl(340 70% 65%));
     --gradient-mission2: linear-gradient(135deg, hsl(270 100% 75%), hsl(270 80% 55%));
-    --gradient-mission3: linear-gradient(135deg, hsl(213 90% 62%), hsl(213 90% 48%));
-    --gradient-mission4: linear-gradient(135deg, hsl(160 84% 42%), hsl(160 74% 35%));
+    --gradient-mission3: linear-gradient(135deg, hsl(36 95% 55%), hsl(28 90% 48%));
+    --gradient-mission4: linear-gradient(135deg, hsl(213 90% 62%), hsl(213 90% 48%));
+    --gradient-mission5: linear-gradient(135deg, hsl(160 84% 42%), hsl(160 74% 35%));
     --gradient-reward: linear-gradient(135deg, hsl(48 100% 97%), hsl(48 96% 89%));
 
     --font-display: 'Fredoka One', cursive;
