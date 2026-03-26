@@ -253,12 +253,13 @@ const Index = () => {
     const mc = MISSION_COLORS[mNum as keyof typeof MISSION_COLORS];
     const tasksDone = state.tasks[mNum]?.filter(Boolean).length ?? 0;
     const allDone = allMissionTasksDone(mNum);
+    // Navigation: mission2 → mission3_theory → mission3 → mission4 → mission5 → verify
     const nextScreen: Screen = missionIndex === 1
       ? "mission3_theory"
-      : missionIndex < 3
+      : missionIndex < 4
         ? (`mission${missionIndex + 2}` as Screen)
         : "verify";
-    const nextLabel = missionIndex < 3
+    const nextLabel = missionIndex < 4
       ? `Siguiente: Misión ${missionIndex + 2}`
       : "Ir a verificación 🔍";
     const prevScreen: Screen = missionIndex === 2
