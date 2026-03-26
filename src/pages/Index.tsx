@@ -115,29 +115,33 @@ const MISSIONS = [
   },
 ];
 
-const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 100
+const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 115
 
 // Verification items per mission
 const verifItems: Record<number, { id: string; text: string }[]> = {
   1: [
     { id: "v1_1", text: "Screen1 tiene una DisposiciónVertical con un VisorDeLista dentro" },
-    { id: "v1_2", text: "El botón 'Crear Reporte' (btn_crear_reporte) aparece debajo del visor" },
+    { id: "v1_2", text: "El botón 'Crear Incidencia' (btn_crear_incidencia) aparece debajo del visor" },
     { id: "v1_3", text: "El componente TinyBD aparece en la zona de componentes invisibles" },
   ],
   2: [
-    { id: "v2_1", text: "Existe la pantalla CrearReporte con etiquetas y campos de texto" },
+    { id: "v2_1", text: "Existe la pantalla Crear_Incidencia con etiquetas y campos de texto" },
     { id: "v2_2", text: "Hay un SelectorDeImagen y un botón 'Añadir'" },
     { id: "v2_3", text: "TinyBD y VisorDeLista invisibles están presentes" },
   ],
   3: [
-    { id: "v3_1", text: "La variable global 'lista' se inicializa con lista vacía" },
-    { id: "v3_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
-    { id: "v3_3", text: "Al pulsar el botón: comprueba campo, inserta en lista, guarda y cierra" },
+    { id: "v3_1", text: "El bloque 'cuando btn_crear_incidencia.Clic' existe" },
+    { id: "v3_2", text: "Dentro tiene 'abrir otra pantalla' con el nombre 'Crear_Incidencia'" },
   ],
   4: [
-    { id: "v4_1", text: "Variable 'listaReportes' existe con lista vacía" },
-    { id: "v4_2", text: "Al inicializar Screen1 se cargan datos y se muestran ejemplos si está vacía" },
-    { id: "v4_3", text: "El botón abre CrearReporte y al volver se recarga la lista" },
+    { id: "v4_1", text: "La variable global 'lista' se inicializa con lista vacía" },
+    { id: "v4_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
+    { id: "v4_3", text: "Al pulsar el botón: comprueba campo, inserta en lista, guarda y cierra" },
+  ],
+  5: [
+    { id: "v5_1", text: "Variable 'listaIncidencias' existe con lista vacía" },
+    { id: "v5_2", text: "Al inicializar Screen1 se cargan datos y se muestran ejemplos si está vacía" },
+    { id: "v5_3", text: "Al volver de Crear_Incidencia se recarga la lista automáticamente" },
   ],
 };
 
@@ -156,14 +160,16 @@ const defaultState: State = {
   tasks: {
     1: [false, false, false, false, false],
     2: [false, false, false, false],
-    3: [false, false, false, false, false],
-    4: [false, false, false, false],
+    3: [false, false, false, false],
+    4: [false, false, false, false, false],
+    5: [false, false, false, false],
   },
   hints: {
     1: [false, false, false],
     2: [false, false, false],
     3: [false, false, false],
     4: [false, false, false],
+    5: [false, false, false],
   },
   verif: {},
   verified: false,
