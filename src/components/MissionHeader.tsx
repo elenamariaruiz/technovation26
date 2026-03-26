@@ -14,6 +14,7 @@ const gradients: Record<number, string> = {
   2: "var(--gradient-mission2)",
   3: "var(--gradient-mission3)",
   4: "var(--gradient-mission4)",
+  5: "var(--gradient-mission5)",
 };
 
 const MissionHeader = ({ number, emoji, title, subtitle, points, earnedPoints, verified, optional }: MissionHeaderProps) => {

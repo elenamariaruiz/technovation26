@@ -14,26 +14,27 @@ import BlocksTheory from "@/components/BlocksTheory";
 
 const STORAGE_KEY = "misiones-appinventor";
 
-type Screen = "welcome" | "mission1" | "mission2" | "mission3_theory" | "mission3" | "mission4" | "verify" | "reward";
+type Screen = "welcome" | "mission1" | "mission2" | "mission3_theory" | "mission3" | "mission4" | "mission5" | "verify" | "reward";
 
 // Mission colors as raw CSS values
 const MISSION_COLORS = {
   1: { color: "#E11D6D", light: "hsl(340 100% 97%)" },
   2: { color: "#B35CFF", light: "hsl(270 100% 97%)" },
-  3: { color: "#3B8BF5", light: "hsl(213 95% 95%)" },
-  4: { color: "#0CAE82", light: "hsl(160 80% 95%)" },
+  3: { color: "#E8870E", light: "hsl(36 100% 96%)" },
+  4: { color: "#3B8BF5", light: "hsl(213 95% 95%)" },
+  5: { color: "#0CAE82", light: "hsl(160 80% 95%)" },
 };
 
 // Task definitions per mission
 const MISSIONS = [
   {
-    num: 1, emoji: "🎨", title: "Diseño de la Pantalla Inicial", subtitle: "¡Tu primera pantalla! · 25 pts",
-    points: 25, intro: "¡Esta es tu primera pantalla! Aquí aparecerá la lista de reportes. Vamos a construirla juntando piezas como si fuera un puzzle 🧩",
+    num: 1, emoji: "🎨", title: "Diseño de Lista_Incidencias", subtitle: "¡Tu primera pantalla! · 25 pts",
+    points: 25, intro: "¡Esta es tu primera pantalla! Aquí aparecerá la lista de incidencias. Vamos a construirla juntando piezas como si fuera un puzzle 🧩",
     tasks: [
       { name: "📱 Tarea 1 — Crea una nueva pantalla", desc: 'Asegúrate de que la pantalla se llama <strong>Screen1</strong>. Si ya existe, ¡genial, ya tienes un punto!', tip: 'Mira arriba en "Screens" y comprueba el nombre.', pts: 5 },
       { name: "📋 Tarea 2 — Añade una DisposiciónVertical", desc: 'Arrastra una <strong>DisposiciónVertical</strong> al centro de la pantalla. Esto es como el esqueleto que ordena todo.', tip: 'Está en la sección "Disposición" del panel de componentes.', pts: 5 },
-      { name: "📜 Tarea 3 — Añade un VisorDeLista", desc: 'Dentro de la disposición, arrastra un <strong>VisorDeLista</strong>. Aquí es donde aparecerán los reportes guardados.', tip: 'Está en la sección "Interfaz de Usuario".', pts: 5 },
-      { name: '🔘 Tarea 4 — Añade el botón "Crear Reporte"', desc: 'Arrastra un <strong>Botón</strong> debajo del visor. Cámbiale el texto a <em>"Crear Reporte"</em> y ponle el nombre <strong>btn_crear_reporte</strong>.', tip: 'Cambia el nombre en "Propiedades" → "Nombre del componente".', pts: 5 },
+      { name: "📜 Tarea 3 — Añade un VisorDeLista", desc: 'Dentro de la disposición, arrastra un <strong>VisorDeLista</strong>. Aquí es donde aparecerán las incidencias guardadas.', tip: 'Está en la sección "Interfaz de Usuario".', pts: 5 },
+      { name: '🔘 Tarea 4 — Añade el botón "Crear Incidencia"', desc: 'Arrastra un <strong>Botón</strong> debajo del visor. Cámbiale el texto a <em>"Crear Incidencia"</em> y ponle el nombre <strong>btn_crear_incidencia</strong>.', tip: 'Cambia el nombre en "Propiedades" → "Nombre del componente".', pts: 5 },
       { name: "🗄️ Tarea 5 — Añade TinyBD (base de datos)", desc: 'Arrastra un componente <strong>TinyBD</strong> a la pantalla. Aparecerá abajo en la zona de componentes invisibles. ¡Este guardará todos los datos!', tip: 'Está en la sección "Almacenamiento".', pts: 5 },
     ],
     hints: [
@@ -44,52 +45,69 @@ const MISSIONS = [
     hintCosts: [5, 5, 10],
   },
   {
-    num: 2, emoji: "✏️", title: "Diseño de la Pantalla Crear Reporte", subtitle: "Opcional · Solo si no la tienes aún · 20 pts",
+    num: 2, emoji: "✏️", title: "Diseño de Crear_Incidencia", subtitle: "Opcional · Solo si no la tienes aún · 20 pts",
     points: 20, optional: true,
-    intro: "Esta es la pantalla donde se escribe un nuevo reporte. ¡Es como rellenar una ficha especial! Si ya la tienes hecha, ¡suma los 20 puntos directamente! 🎉",
+    intro: "Esta es la pantalla donde se escribe una nueva incidencia. ¡Es como rellenar una ficha especial! Si ya la tienes hecha, ¡suma los 20 puntos directamente! 🎉",
     tasks: [
-      { name: "➕ Tarea 1 — Crea la pantalla nueva", desc: 'Pulsa el botón <strong>"+"</strong> en la parte superior (junto a "Screens") y llama a la nueva pantalla exactamente <strong>CrearReporte</strong>.', tip: "¡Las mayúsculas y minúsculas importan!", pts: 4 },
+      { name: "➕ Tarea 1 — Crea la pantalla nueva", desc: 'Pulsa el botón <strong>"+"</strong> en la parte superior (junto a "Screens") y llama a la nueva pantalla exactamente <strong>Crear_Incidencia</strong>.', tip: "¡Las mayúsculas, minúsculas y guiones bajos importan!", pts: 4 },
       { name: "🏷️ Tarea 2 — Añade etiquetas y campos de texto", desc: 'Coloca <strong>Etiqueta1</strong> + <strong>CampoDeTexto1</strong> para el título, y <strong>Etiqueta2</strong> + <strong>CampoDeTexto2</strong> para la localización.', tip: 'Cambia el texto de las etiquetas a "Título" y "Localización".', pts: 5 },
-      { name: "📸 Tarea 3 — Añade el SelectorDeImagen", desc: 'Arrastra un <strong>SelectorDeImagen</strong> para que la usuaria pueda elegir una foto del reporte.', tip: 'Está en "Multimedia".', pts: 4 },
+      { name: "📸 Tarea 3 — Añade el SelectorDeImagen", desc: 'Arrastra un <strong>SelectorDeImagen</strong> para que la usuaria pueda elegir una foto de la incidencia.', tip: 'Está en "Multimedia".', pts: 4 },
       { name: "💾 Tarea 4 — Añade el botón de guardar y la TinyBD", desc: 'Añade un <strong>Botón</strong> con el texto "Añadir" y un componente <strong>TinyBD</strong> invisible. También necesitas un <strong>VisorDeLista</strong> invisible para crear los elementos.', tip: "El VisorDeLista puede estar oculto; solo lo usamos para sus bloques.", pts: 7 },
     ],
     hints: [
-      'Para crear la pantalla: arriba en la barra, junto a "Screen1", hay un botón "+". Escribe exactamente CrearReporte.',
+      'Para crear la pantalla: arriba en la barra, junto a "Screen1", hay un botón "+". Escribe exactamente Crear_Incidencia.',
       "Las Etiquetas y CamposDeTexto están en Interfaz de Usuario. Pon primero la Etiqueta y debajo el CampoDeTexto.",
       'El SelectorDeImagen está en la sección "Multimedia" del panel izquierdo.',
     ],
     hintCosts: [5, 5, 10],
   },
   {
-    num: 3, emoji: "⚙️", title: "Programación de CrearReporte", subtitle: "Editor de bloques · 25 pts",
+    num: 3, emoji: "🚪", title: "Abrir Otras Pantallas", subtitle: "Tu primer bloque de programación · 15 pts",
+    points: 15,
+    intro: "¡Vamos a hacer que el botón 'Crear Incidencia' de la pantalla Lista_Incidencias abra la pantalla Crear_Incidencia! Es como ponerle una puerta mágica al botón 🚪✨",
+    tasks: [
+      { name: "🧱 Tarea 1 — Abre el editor de bloques", desc: 'Asegúrate de estar en la pantalla <strong>Screen1</strong> (Lista_Incidencias). Arriba a la derecha, pulsa el botón <strong>"Bloques"</strong> para abrir el editor de programación.', tip: 'Si ves el diseño del teléfono, es que estás en "Diseñador". Cambia a "Bloques".', pts: 3 },
+      { name: "🔘 Tarea 2 — Bloque cuando btn_crear_incidencia.Clic", desc: 'En el panel izquierdo, busca <strong>btn_crear_incidencia</strong> y arrastra el bloque <strong>cuando btn_crear_incidencia.Clic</strong> al área de trabajo.', tip: 'El bloque está en la categoría del botón, en el panel izquierdo bajo tus componentes.', pts: 4 },
+      { name: "📲 Tarea 3 — Añade 'abrir otra pantalla'", desc: 'Ve a la sección <strong>Control</strong> del panel izquierdo. Arrastra el bloque <strong>abrir otra pantalla nombre de pantalla</strong> y colócalo DENTRO del bloque del botón.', tip: 'Está en "Control" → busca "abrir otra pantalla nombre de pantalla".', pts: 4 },
+      { name: '✏️ Tarea 4 — Escribe el nombre de la pantalla', desc: 'En el hueco del nombre, conecta un bloque de <strong>Texto</strong> (comillas) y escribe exactamente <strong>"Crear_Incidencia"</strong>. ¡Cuidado con las mayúsculas y el guion bajo!', tip: 'El bloque de texto está en la sección "Texto" → es el que tiene comillas vacías "".', pts: 4 },
+    ],
+    hints: [
+      'El botón "Bloques" está arriba a la derecha, al lado de "Diseñador". Haz clic para cambiar al editor de programación.',
+      'En el panel izquierdo, busca tu botón (btn_crear_incidencia). Al hacer clic aparecerán todos sus bloques disponibles. Elige "cuando btn_crear_incidencia.Clic".',
+      'En "Control", arrastra "abrir otra pantalla nombre de pantalla" dentro del bloque Clic. Luego ve a "Texto", arrastra un bloque de comillas y escribe Crear_Incidencia.',
+    ],
+    hintCosts: [5, 5, 10],
+  },
+  {
+    num: 4, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 25 pts",
     points: 25,
-    intro: "¡Hora de dar vida a los bloques! Ve a la pantalla CrearReporte y abre el editor de bloques. Vamos a decirle a la app qué hacer cuando alguien añade un reporte 🧱",
+    intro: "¡Hora de dar vida a los bloques! Ve a la pantalla Crear_Incidencia y abre el editor de bloques. Vamos a decirle a la app qué hacer cuando alguien añade una incidencia 🧱",
     tasks: [
       { name: '📦 Tarea 1 — Crea la variable global "lista"', desc: 'En "Variables", crea un bloque <strong>inicializar global lista como</strong> y ponle una <em>lista vacía</em> como valor inicial.', tip: 'La lista vacía está en "Listas" → "crear una lista vacía".', pts: 5 },
-      { name: '🔌 Tarea 2 — Bloque "Al inicializar CrearReporte"', desc: 'Crea el bloque <strong>cuando CrearReporte.Inicializar</strong>. Dentro, pon la variable <em>lista</em> igual a lo que devuelve <strong>TinyBD1.ObtenerValor</strong> con etiqueta <em>"Actividades"</em> y valor por defecto <em>lista vacía</em>.', tip: "Así cargamos los reportes que ya existían antes.", pts: 5 },
+      { name: '🔌 Tarea 2 — Bloque "Al inicializar Crear_Incidencia"', desc: 'Crea el bloque <strong>cuando Crear_Incidencia.Inicializar</strong>. Dentro, pon la variable <em>lista</em> igual a lo que devuelve <strong>TinyBD1.ObtenerValor</strong> con etiqueta <em>"Incidencias"</em> y valor por defecto <em>lista vacía</em>.', tip: "Así cargamos las incidencias que ya existían antes.", pts: 5 },
       { name: "🔍 Tarea 3 — Comprueba que el campo no está vacío", desc: 'En el bloque <strong>cuando Botón1.Clic</strong>, añade un <em>si</em> que compruebe que <strong>CampoDeTexto1.Texto ≠ ""</strong> (vacío). Solo si hay texto, hacemos el resto.', tip: 'El bloque "≠" está en "Lógica".', pts: 5 },
-      { name: "➕ Tarea 4 — Añade el nuevo reporte a la lista", desc: 'Dentro del <em>entonces</em>, usa <strong>insertar elemento en lista</strong> con índice = longitud de la lista + 1, y como elemento <strong>VisorDeLista1.CrearElemento</strong> con textoPrincipal, textoDetalle y nombreImagen de los campos de texto.', tip: "textoPrincipal = CampoDeTexto1.Texto, textoDetalle = CampoDeTexto2.Texto.", pts: 5 },
-      { name: "💾 Tarea 5 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Actividades"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
+      { name: "➕ Tarea 4 — Añade la nueva incidencia a la lista", desc: 'Dentro del <em>entonces</em>, usa <strong>insertar elemento en lista</strong> con índice = longitud de la lista + 1, y como elemento <strong>VisorDeLista1.CrearElemento</strong> con textoPrincipal, textoDetalle y nombreImagen de los campos de texto.', tip: "textoPrincipal = CampoDeTexto1.Texto, textoDetalle = CampoDeTexto2.Texto.", pts: 5 },
+      { name: "💾 Tarea 5 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Incidencias"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
     ],
     hints: [
       'Para crear la variable: en el panel izquierdo, clica "Variables" y arrastra "inicializar global nombre como". Cambia "nombre" por "lista".',
-      'El bloque "cuando CrearReporte.Inicializar" está en el panel izquierdo si clicas en "CrearReporte". Dentro, usa "poner global lista como" y conecta TinyBD1.ObtenerValor.',
+      'El bloque "cuando Crear_Incidencia.Inicializar" está en el panel izquierdo si clicas en "Crear_Incidencia". Dentro, usa "poner global lista como" y conecta TinyBD1.ObtenerValor.',
       'Para insertar en lista: ve a "Listas" → "insertar elemento en lista". El índice es "longitud de lista" + 1.',
     ],
     hintCosts: [5, 5, 10],
   },
   {
-    num: 4, emoji: "🏠", title: "Programación de la Pantalla Inicial", subtitle: "¡La última misión! · 30 pts",
+    num: 5, emoji: "🏠", title: "Programación de Lista_Incidencias", subtitle: "¡La última misión! · 30 pts",
     points: 30,
-    intro: "¡La última misión! Vuelve a Screen1 y abre los bloques. Aquí haremos que la lista se cargue sola al entrar y que el botón abra la segunda pantalla 🏁",
+    intro: "¡La última misión! Vuelve a Screen1 y abre los bloques. Aquí haremos que la lista se cargue sola al entrar y que todo se actualice al volver de crear una incidencia 🏁",
     tasks: [
-      { name: '📦 Tarea 1 — Crea la variable "listaReportes"', desc: 'Crea un bloque <strong>inicializar global listaReportes como</strong> con una lista vacía. Esta guardará todos los reportes mientras la app está abierta.', tip: "Es igual que hiciste en la misión anterior pero con otro nombre.", pts: 5 },
-      { name: '🔌 Tarea 2 — Bloque "Al inicializar Screen1"', desc: 'Crea el bloque <strong>cuando Screen1.Inicializar</strong>. Carga la lista desde TinyBD con etiqueta <em>"Actividades"</em>. Si está vacía, añade dos ejemplos ("Basura en la Playa / A Coruña" y "Señal Rota / Arteixo"). Al final, muéstralos con <strong>VisorDeLista1.AddItems</strong>.', tip: 'Usa el bloque "¿está vacía la lista?" para comprobar si hay datos.', pts: 10 },
-      { name: "🔘 Tarea 3 — Botón para abrir la segunda pantalla", desc: 'Crea el bloque <strong>cuando btn_crear_reporte.Clic</strong> y dentro usa <strong>abrir otra pantalla</strong> con el nombre <em>"CrearReporte"</em>.', tip: "El nombre debe ser exactamente igual al de la pantalla, ¡con mayúsculas!", pts: 5 },
-      { name: "🔄 Tarea 4 — Recarga la lista al volver", desc: 'Crea el bloque <strong>cuando Screen1.OtraPantallaCerrada</strong>. Dentro, vuelve a leer TinyBD y actualiza <strong>VisorDeLista1.AddItems</strong> con la lista nueva para que aparezca el reporte recién creado.', tip: 'Este bloque es el "truco" que hace que la app se actualice sola al volver.', pts: 10 },
+      { name: '📦 Tarea 1 — Crea la variable "listaIncidencias"', desc: 'Crea un bloque <strong>inicializar global listaIncidencias como</strong> con una lista vacía. Esta guardará todas las incidencias mientras la app está abierta.', tip: "Es igual que hiciste en la misión anterior pero con otro nombre.", pts: 5 },
+      { name: '🔌 Tarea 2 — Bloque "Al inicializar Screen1"', desc: 'Crea el bloque <strong>cuando Screen1.Inicializar</strong>. Carga la lista desde TinyBD con etiqueta <em>"Incidencias"</em>. Si está vacía, añade dos ejemplos ("Basura en la Playa / A Coruña" y "Señal Rota / Arteixo"). Al final, muéstralos con <strong>VisorDeLista1.AddItems</strong>.', tip: 'Usa el bloque "¿está vacía la lista?" para comprobar si hay datos.', pts: 10 },
+      { name: "🔄 Tarea 3 — Recarga la lista al volver", desc: 'Crea el bloque <strong>cuando Screen1.OtraPantallaCerrada</strong>. Dentro, vuelve a leer TinyBD y actualiza <strong>VisorDeLista1.AddItems</strong> con la lista nueva para que aparezca la incidencia recién creada.', tip: 'Este bloque es el "truco" que hace que la app se actualice sola al volver.', pts: 10 },
+      { name: "🧪 Tarea 4 — ¡Prueba tu app!", desc: 'Conecta tu dispositivo o usa el emulador. Comprueba que al abrir la app aparecen los ejemplos, que el botón abre Crear_Incidencia, y que al crear una nueva incidencia aparece en la lista al volver.', tip: "Usa AI Companion o el emulador para probar.", pts: 5 },
     ],
     hints: [
-      'Para crear la variable global: "Variables" → arrastra "inicializar global nombre como" y cámbialo a "listaReportes".',
+      'Para crear la variable global: "Variables" → arrastra "inicializar global nombre como" y cámbialo a "listaIncidencias".',
       'En el bloque Inicializar, usa "si está vacía la lista" de la sección "Listas". Para añadir ejemplos, usa "insertar elemento en lista" dos veces.',
       'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar.',
     ],
@@ -97,29 +115,33 @@ const MISSIONS = [
   },
 ];
 
-const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 100
+const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 115
 
 // Verification items per mission
 const verifItems: Record<number, { id: string; text: string }[]> = {
   1: [
     { id: "v1_1", text: "Screen1 tiene una DisposiciónVertical con un VisorDeLista dentro" },
-    { id: "v1_2", text: "El botón 'Crear Reporte' (btn_crear_reporte) aparece debajo del visor" },
+    { id: "v1_2", text: "El botón 'Crear Incidencia' (btn_crear_incidencia) aparece debajo del visor" },
     { id: "v1_3", text: "El componente TinyBD aparece en la zona de componentes invisibles" },
   ],
   2: [
-    { id: "v2_1", text: "Existe la pantalla CrearReporte con etiquetas y campos de texto" },
+    { id: "v2_1", text: "Existe la pantalla Crear_Incidencia con etiquetas y campos de texto" },
     { id: "v2_2", text: "Hay un SelectorDeImagen y un botón 'Añadir'" },
     { id: "v2_3", text: "TinyBD y VisorDeLista invisibles están presentes" },
   ],
   3: [
-    { id: "v3_1", text: "La variable global 'lista' se inicializa con lista vacía" },
-    { id: "v3_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
-    { id: "v3_3", text: "Al pulsar el botón: comprueba campo, inserta en lista, guarda y cierra" },
+    { id: "v3_1", text: "El bloque 'cuando btn_crear_incidencia.Clic' existe" },
+    { id: "v3_2", text: "Dentro tiene 'abrir otra pantalla' con el nombre 'Crear_Incidencia'" },
   ],
   4: [
-    { id: "v4_1", text: "Variable 'listaReportes' existe con lista vacía" },
-    { id: "v4_2", text: "Al inicializar Screen1 se cargan datos y se muestran ejemplos si está vacía" },
-    { id: "v4_3", text: "El botón abre CrearReporte y al volver se recarga la lista" },
+    { id: "v4_1", text: "La variable global 'lista' se inicializa con lista vacía" },
+    { id: "v4_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
+    { id: "v4_3", text: "Al pulsar el botón: comprueba campo, inserta en lista, guarda y cierra" },
+  ],
+  5: [
+    { id: "v5_1", text: "Variable 'listaIncidencias' existe con lista vacía" },
+    { id: "v5_2", text: "Al inicializar Screen1 se cargan datos y se muestran ejemplos si está vacía" },
+    { id: "v5_3", text: "Al volver de Crear_Incidencia se recarga la lista automáticamente" },
   ],
 };
 
@@ -138,14 +160,16 @@ const defaultState: State = {
   tasks: {
     1: [false, false, false, false, false],
     2: [false, false, false, false],
-    3: [false, false, false, false, false],
-    4: [false, false, false, false],
+    3: [false, false, false, false],
+    4: [false, false, false, false, false],
+    5: [false, false, false, false],
   },
   hints: {
     1: [false, false, false],
     2: [false, false, false],
     3: [false, false, false],
     4: [false, false, false],
+    5: [false, false, false],
   },
   verif: {},
   verified: false,
@@ -194,8 +218,8 @@ const Index = () => {
   };
 
   const totalScore = state.verified
-    ? Math.max(0, MISSIONS.reduce((sum, m) => sum + m.points, 0) - [1, 2, 3, 4].reduce((sum, n) => sum + (state.hints[n] || []).reduce((s, used, i) => s + (used ? MISSIONS[n - 1].hintCosts[i] : 0), 0), 0))
-    : [1, 2, 3, 4].reduce((sum, n) => sum + getMissionScore(n), 0);
+    ? Math.max(0, MISSIONS.reduce((sum, m) => sum + m.points, 0) - [1, 2, 3, 4, 5].reduce((sum, n) => sum + (state.hints[n] || []).reduce((s, used, i) => s + (used ? MISSIONS[n - 1].hintCosts[i] : 0), 0), 0))
+    : [1, 2, 3, 4, 5].reduce((sum, n) => sum + getMissionScore(n), 0);
 
   const allMissionTasksDone = (mNum: number) => state.tasks[mNum]?.every(Boolean) ?? false;
 
@@ -229,12 +253,13 @@ const Index = () => {
     const mc = MISSION_COLORS[mNum as keyof typeof MISSION_COLORS];
     const tasksDone = state.tasks[mNum]?.filter(Boolean).length ?? 0;
     const allDone = allMissionTasksDone(mNum);
+    // Navigation: mission2 → mission3_theory → mission3 → mission4 → mission5 → verify
     const nextScreen: Screen = missionIndex === 1
       ? "mission3_theory"
-      : missionIndex < 3
+      : missionIndex < 4
         ? (`mission${missionIndex + 2}` as Screen)
         : "verify";
-    const nextLabel = missionIndex < 3
+    const nextLabel = missionIndex < 4
       ? `Siguiente: Misión ${missionIndex + 2}`
       : "Ir a verificación 🔍";
     const prevScreen: Screen = missionIndex === 2
@@ -403,11 +428,12 @@ const Index = () => {
         )}
         {currentScreen === "mission3" && <MissionScreen missionIndex={2} />}
         {currentScreen === "mission4" && <MissionScreen missionIndex={3} />}
+        {currentScreen === "mission5" && <MissionScreen missionIndex={4} />}
 
         {/* ══════ VERIFICACIÓN ══════ */}
         {currentScreen === "verify" && (
           <div key="verify" className="animate-fade-in">
-            <NavBar back="mission4" backLabel="Misión 4" />
+            <NavBar back="mission5" backLabel="Misión 5" />
 
             <div className="text-center mb-6">
               <div className="text-5xl mb-2 animate-float">🔍</div>
