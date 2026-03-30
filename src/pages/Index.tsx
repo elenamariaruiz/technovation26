@@ -12,6 +12,7 @@ import Confetti from "@/components/Confetti";
 import TipBox from "@/components/TipBox";
 import BlocksTheory from "@/components/BlocksTheory";
 import ListExplanation from "@/components/ListExplanation";
+import pistaMision3 from "@/assets/pista_m3_final.png";
 
 const STORAGE_KEY = "misiones-appinventor-v3";
 
@@ -40,10 +41,9 @@ const MISSIONS = [
       { name: '❌ Tarea 5 — Cierra la pantalla con Aceptar y Salir', desc: 'Cambia a la pantalla <strong>Crear_Incidencia</strong> y abre los bloques. De momento los botones <em>Aceptar</em> y <em>Salir</em> solo cerrarán la pantalla: busca cada botón en el panel izquierdo, arrastra el bloque <strong>cuando BtnAceptar.Clic</strong> (y luego <strong>cuando BtnSalir.Clic</strong>) al área de trabajo, y dentro de cada uno coloca el bloque <strong>cerrar pantalla</strong> de la sección <strong>Control</strong>.', tip: 'El bloque "cerrar pantalla" está en Control. Repite los mismos pasos para cada botón.', pts: 4 },
     ],
     hints: [
-      { text: '', image: "/hint-abrir-pantalla.jpg" },
-      { text: '', image: "/hint-cerrar-pantalla.jpg" },
+      { text: 'El bloque del botón está en el panel izquierdo bajo tus componentes. "Abrir otra pantalla" está en Control. El bloque de texto con comillas está en "Texto". Para cerrar pantalla, usa "cerrar pantalla" de Control dentro de cada bloque de botón (BtnAceptar y BtnSalir).' },
     ],
-    hintCosts: [5, 10],
+    hintCosts: [5],
   },
   {
     num: 2, emoji: "🏠", title: "Programación de Lista_Incidencias (I)", subtitle: "Variables y carga inicial · 15 pts",
@@ -54,11 +54,9 @@ const MISSIONS = [
       { name: '🔌 Tarea 2 — Bloque "Al inicializar Screen1"', desc: 'Crea el bloque <strong>cuando Screen1.Inicializar</strong>. Carga la lista desde TinyBD con etiqueta <em>"Incidencias"</em>. Si está vacía, añade dos ejemplos ("Basura en la Playa / A Coruña" y "Señal Rota / Arteixo"). Al final, muéstralos con <strong>VisorDeLista1.AddItems</strong>.', tip: 'Usa el bloque "¿está vacía la lista?" para comprobar si hay datos.', pts: 10 },
     ],
     hints: [
-      { text: 'Para crear la variable global: "Variables" → arrastra "inicializar global nombre como" y cámbialo a "listaIncidencias".' },
-      { text: 'En el bloque Inicializar, usa "si está vacía la lista" de la sección "Listas". Para añadir ejemplos, usa "insertar elemento en lista" dos veces.' },
-      { text: 'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar.' },
+      { text: 'Para crear la variable global: "Variables" → arrastra "inicializar global nombre como" y cámbialo a "listaIncidencias". En el bloque Inicializar, usa "si está vacía la lista" de "Listas" y "insertar elemento en lista" para los ejemplos. Muestra los datos con VisorDeLista1.AddItems.' },
     ],
-    hintCosts: [5, 5, 10],
+    hintCosts: [5],
   },
   {
     num: 3, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 25 pts",
@@ -73,11 +71,10 @@ const MISSIONS = [
       { name: "💾 Tarea 5 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Incidencias"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
     ],
     hints: [
-      { text: 'Para crear la variable: en el panel izquierdo, clica "Variables" y arrastra "inicializar global nombre como". Cambia "nombre" por "lista".' },
-      { text: 'El bloque "cuando Crear_Incidencia.Inicializar" está en el panel izquierdo si clicas en "Crear_Incidencia". Dentro, usa "poner global lista como" y conecta TinyBD1.ObtenerValor.' },
-      { text: 'Para insertar en lista: ve a "Listas" → "insertar elemento en lista". El índice es "longitud de lista" + 1.' },
+      { text: 'Para crear la variable: "Variables" → "inicializar global nombre como" → cambia a "lista". En Inicializar, usa "poner global lista como" + TinyBD1.ObtenerValor. Para insertar: "Listas" → "insertar elemento en lista" con índice = longitud + 1. Guarda con TinyBD1.GuardarValor y cierra pantalla.' },
+      { text: '', image: pistaMision3 },
     ],
-    hintCosts: [5, 5, 10],
+    hintCosts: [5, 10],
   },
   {
     num: 4, emoji: "🔄", title: "Programación de Lista_Incidencias (II)", subtitle: "¡La última misión! · 15 pts",
@@ -88,11 +85,9 @@ const MISSIONS = [
       { name: "🧪 Tarea 2 — ¡Prueba tu app!", desc: 'Conecta tu dispositivo o usa el emulador. Comprueba que al abrir la app aparecen los ejemplos, que el botón abre Crear_Incidencia, y que al crear una nueva incidencia aparece en la lista al volver.', tip: "Usa AI Companion o el emulador para probar.", pts: 5 },
     ],
     hints: [
-      { text: 'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar.' },
-      { text: 'Para probar: en App Inventor, ve a "Conectar" → "AI Companion". Abre la app en tu móvil con el código QR.' },
-      { text: 'Si la lista no se actualiza al volver, comprueba que el bloque OtraPantallaCerrada lee TinyBD y llama a VisorDeLista1.AddItems.' },
+      { text: 'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar: lee TinyBD y llama a VisorDeLista1.AddItems. Para probar: "Conectar" → "AI Companion" y escanea el QR.' },
     ],
-    hintCosts: [5, 5, 10],
+    hintCosts: [5],
   },
 ];
 
@@ -139,10 +134,10 @@ const defaultState: State = {
     4: [false, false],
   },
   hints: {
-    1: [false, false],
-    2: [false, false, false],
-    3: [false, false, false],
-    4: [false, false, false],
+    1: [false],
+    2: [false],
+    3: [false, false],
+    4: [false],
   },
   verif: {},
   verified: false,
