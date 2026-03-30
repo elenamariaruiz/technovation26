@@ -96,7 +96,7 @@ const MISSIONS = [
   },
 ];
 
-const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 115
+const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 120
 
 // Verification items per mission
 const verifItems: Record<number, { id: string; text: string }[]> = {
