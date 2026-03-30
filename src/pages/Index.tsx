@@ -277,22 +277,27 @@ const Index = () => {
           {m.tasks.map((task, i) => {
             const isLocked = i > 0 && !state.tasks[mNum]?.[i - 1];
             const isExpanded = i === firstUncompletedIndex;
+            const showListExplanation = (m as any).showListExplanationBeforeTask === i;
 
             return (
-              <TaskItem
-                key={i}
-                index={i}
-                checked={state.tasks[mNum]?.[i] ?? false}
-                onToggle={() => toggleTask(mNum, i)}
-                name={task.name}
-                description={task.desc}
-                tip={task.tip}
-                points={task.pts}
-                color={mc.color}
-                colorLight={mc.light}
-                locked={isLocked}
-                expanded={isExpanded}
-              />
+              <div key={i}>
+                {showListExplanation && state.tasks[mNum]?.[i - 1] && (
+                  <ListExplanation />
+                )}
+                <TaskItem
+                  index={i}
+                  checked={state.tasks[mNum]?.[i] ?? false}
+                  onToggle={() => toggleTask(mNum, i)}
+                  name={task.name}
+                  description={task.desc}
+                  tip={task.tip}
+                  points={task.pts}
+                  color={mc.color}
+                  colorLight={mc.light}
+                  locked={isLocked}
+                  expanded={isExpanded}
+                />
+              </div>
             );
           })}
         </div>
