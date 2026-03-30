@@ -108,7 +108,7 @@ const verifItems: Record<number, { id: string; text: string }[]> = {
   3: [
     { id: "v3_1", text: "La variable global 'lista' se inicializa con lista vacía" },
     { id: "v3_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
-    { id: "v3_3", text: "Al pulsar el botón: comprueba campo, inserta en lista, guarda y cierra" },
+    { id: "v3_3", text: "Al pulsar el botón: inserta en lista, guarda y cierra" },
   ],
   4: [
     { id: "v4_1", text: "Al volver de Crear_Incidencia se recarga la lista automáticamente" },
