@@ -12,6 +12,7 @@ import Confetti from "@/components/Confetti";
 import TipBox from "@/components/TipBox";
 import BlocksTheory from "@/components/BlocksTheory";
 import ListExplanation from "@/components/ListExplanation";
+import pistaMision3 from "@/assets/pista_m3_final.png";
 
 const STORAGE_KEY = "misiones-appinventor-v3";
 
