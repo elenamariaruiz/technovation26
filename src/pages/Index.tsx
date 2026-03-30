@@ -11,6 +11,7 @@ import ContinueButton from "@/components/ContinueButton";
 import Confetti from "@/components/Confetti";
 import TipBox from "@/components/TipBox";
 import BlocksTheory from "@/components/BlocksTheory";
+import ListExplanation from "@/components/ListExplanation";
 
 const STORAGE_KEY = "misiones-appinventor-v3";
 
@@ -60,14 +61,16 @@ const MISSIONS = [
     hintCosts: [5, 5, 10],
   },
   {
-    num: 3, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 20 pts",
-    points: 20,
+    num: 3, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 25 pts",
+    points: 25,
     intro: "¡Hora de dar vida a los bloques! Ve a la pantalla Crear_Incidencia y abre el editor de bloques. Vamos a decirle a la app qué hacer cuando alguien añade una incidencia 🧱",
+    showListExplanationBeforeTask: 3,
     tasks: [
-      { name: '📦 Tarea 1 — Crea la variable global "lista"', desc: 'En "Variables", crea un bloque <strong>inicializar global lista como</strong> y ponle una <em>lista vacía</em> como valor inicial.', tip: 'La lista vacía está en "Listas" → "crear una lista vacía".', pts: 5 },
-      { name: '🔌 Tarea 2 — Bloque "Al inicializar Crear_Incidencia"', desc: 'Crea el bloque <strong>cuando Crear_Incidencia.Inicializar</strong>. Dentro, pon la variable <em>lista</em> igual a lo que devuelve <strong>TinyBD1.ObtenerValor</strong> con etiqueta <em>"Incidencias"</em> y valor por defecto <em>lista vacía</em>.', tip: "Así cargamos las incidencias que ya existían antes.", pts: 5 },
-      { name: "➕ Tarea 3 — Añade la nueva incidencia a la lista", desc: 'En el bloque <strong>cuando Botón1.Clic</strong>, usa <strong>insertar elemento en lista</strong> con índice = longitud de la lista + 1, y como elemento <strong>VisorDeLista1.CrearElemento</strong> con textoPrincipal, textoDetalle y nombreImagen de los campos de texto.', tip: "textoPrincipal = CampoDeTexto1.Texto, textoDetalle = CampoDeTexto2.Texto.", pts: 5 },
-      { name: "💾 Tarea 4 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Incidencias"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
+      { name: '👁️ Tarea 1 — Añade un VisorDeLista', desc: 'En el <strong>Diseñador</strong>, arrastra un componente <strong>VisorDeLista</strong> a la pantalla Crear_Incidencia. <strong>¡MUY IMPORTANTE!</strong> En el panel de la derecha (Propiedades), marca la opción <strong>Visible = NO visible</strong>. Lo necesitamos para crear elementos, pero no queremos que se vea.', tip: 'El VisorDeLista está en "Interfaz de usuario" en la paleta de componentes. Recuerda ponerlo en NO visible.', pts: 5 },
+      { name: '📦 Tarea 2 — Crea la variable global "lista"', desc: 'En "Variables", crea un bloque <strong>inicializar global lista como</strong> y ponle una <em>lista vacía</em> como valor inicial.', tip: 'La lista vacía está en "Listas" → "crear una lista vacía".', pts: 5 },
+      { name: '🔌 Tarea 3 — Bloque "Al inicializar Crear_Incidencia"', desc: 'Crea el bloque <strong>cuando Crear_Incidencia.Inicializar</strong>. Dentro, pon la variable <em>lista</em> igual a lo que devuelve <strong>TinyBD1.ObtenerValor</strong> con etiqueta <em>"Incidencias"</em> y valor por defecto <em>lista vacía</em>.', tip: "Así cargamos las incidencias que ya existían antes.", pts: 5 },
+      { name: "➕ Tarea 4 — Añade la nueva incidencia a la lista", desc: 'En el bloque <strong>cuando Botón1.Clic</strong>, usa <strong>insertar elemento en lista</strong> con índice = longitud de la lista + 1, y como elemento <strong>VisorDeLista1.CrearElemento</strong> con textoPrincipal, textoDetalle y nombreImagen de los campos de texto.', tip: "textoPrincipal = CampoDeTexto1.Texto, textoDetalle = CampoDeTexto2.Texto, nombreImagen = SelectorDeImagen1.Selección.", pts: 5 },
+      { name: "💾 Tarea 5 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Incidencias"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
     ],
     hints: [
       { text: 'Para crear la variable: en el panel izquierdo, clica "Variables" y arrastra "inicializar global nombre como". Cambia "nombre" por "lista".' },
@@ -93,7 +96,7 @@ const MISSIONS = [
   },
 ];
 
-const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 115
+const MAX_SCORE = MISSIONS.reduce((sum, m) => sum + m.points, 0); // 120
 
 // Verification items per mission
 const verifItems: Record<number, { id: string; text: string }[]> = {
@@ -106,6 +109,7 @@ const verifItems: Record<number, { id: string; text: string }[]> = {
     { id: "v2_2", text: "Al inicializar Screen1 se cargan datos y se muestran ejemplos si está vacía" },
   ],
   3: [
+    { id: "v3_0", text: "El VisorDeLista existe y está marcado como NO visible" },
     { id: "v3_1", text: "La variable global 'lista' se inicializa con lista vacía" },
     { id: "v3_2", text: "Al inicializar la pantalla se cargan los datos de TinyBD" },
     { id: "v3_3", text: "Al pulsar el botón: inserta en lista, guarda y cierra" },
@@ -131,7 +135,7 @@ const defaultState: State = {
   tasks: {
     1: [false, false, false, false, false],
     2: [false, false],
-    3: [false, false, false, false],
+    3: [false, false, false, false, false],
     4: [false, false],
   },
   hints: {
@@ -273,22 +277,27 @@ const Index = () => {
           {m.tasks.map((task, i) => {
             const isLocked = i > 0 && !state.tasks[mNum]?.[i - 1];
             const isExpanded = i === firstUncompletedIndex;
+            const showListExplanation = (m as any).showListExplanationBeforeTask === i;
 
             return (
-              <TaskItem
-                key={i}
-                index={i}
-                checked={state.tasks[mNum]?.[i] ?? false}
-                onToggle={() => toggleTask(mNum, i)}
-                name={task.name}
-                description={task.desc}
-                tip={task.tip}
-                points={task.pts}
-                color={mc.color}
-                colorLight={mc.light}
-                locked={isLocked}
-                expanded={isExpanded}
-              />
+              <div key={i}>
+                {showListExplanation && state.tasks[mNum]?.[i - 1] && (
+                  <ListExplanation />
+                )}
+                <TaskItem
+                  index={i}
+                  checked={state.tasks[mNum]?.[i] ?? false}
+                  onToggle={() => toggleTask(mNum, i)}
+                  name={task.name}
+                  description={task.desc}
+                  tip={task.tip}
+                  points={task.pts}
+                  color={mc.color}
+                  colorLight={mc.light}
+                  locked={isLocked}
+                  expanded={isExpanded}
+                />
+              </div>
             );
           })}
         </div>
