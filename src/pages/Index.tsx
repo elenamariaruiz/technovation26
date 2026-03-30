@@ -60,15 +60,14 @@ const MISSIONS = [
     hintCosts: [5, 5, 10],
   },
   {
-    num: 3, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 25 pts",
-    points: 25,
+    num: 3, emoji: "⚙️", title: "Programación de Crear_Incidencia", subtitle: "Editor de bloques · 20 pts",
+    points: 20,
     intro: "¡Hora de dar vida a los bloques! Ve a la pantalla Crear_Incidencia y abre el editor de bloques. Vamos a decirle a la app qué hacer cuando alguien añade una incidencia 🧱",
     tasks: [
       { name: '📦 Tarea 1 — Crea la variable global "lista"', desc: 'En "Variables", crea un bloque <strong>inicializar global lista como</strong> y ponle una <em>lista vacía</em> como valor inicial.', tip: 'La lista vacía está en "Listas" → "crear una lista vacía".', pts: 5 },
       { name: '🔌 Tarea 2 — Bloque "Al inicializar Crear_Incidencia"', desc: 'Crea el bloque <strong>cuando Crear_Incidencia.Inicializar</strong>. Dentro, pon la variable <em>lista</em> igual a lo que devuelve <strong>TinyBD1.ObtenerValor</strong> con etiqueta <em>"Incidencias"</em> y valor por defecto <em>lista vacía</em>.', tip: "Así cargamos las incidencias que ya existían antes.", pts: 5 },
-      { name: "🔍 Tarea 3 — Comprueba que el campo no está vacío", desc: 'En el bloque <strong>cuando Botón1.Clic</strong>, añade un <em>si</em> que compruebe que <strong>CampoDeTexto1.Texto ≠ ""</strong> (vacío). Solo si hay texto, hacemos el resto.', tip: 'El bloque "≠" está en "Lógica".', pts: 5 },
-      { name: "➕ Tarea 4 — Añade la nueva incidencia a la lista", desc: 'Dentro del <em>entonces</em>, usa <strong>insertar elemento en lista</strong> con índice = longitud de la lista + 1, y como elemento <strong>VisorDeLista1.CrearElemento</strong> con textoPrincipal, textoDetalle y nombreImagen de los campos de texto.', tip: "textoPrincipal = CampoDeTexto1.Texto, textoDetalle = CampoDeTexto2.Texto.", pts: 5 },
-      { name: "💾 Tarea 5 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Incidencias"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
+      { name: "➕ Tarea 3 — Añade la nueva incidencia a la lista", desc: 'En el bloque <strong>cuando Botón1.Clic</strong>, usa <strong>insertar elemento en lista</strong> con índice = longitud de la lista + 1, y como elemento <strong>VisorDeLista1.CrearElemento</strong> con textoPrincipal, textoDetalle y nombreImagen de los campos de texto.', tip: "textoPrincipal = CampoDeTexto1.Texto, textoDetalle = CampoDeTexto2.Texto.", pts: 5 },
+      { name: "💾 Tarea 4 — Guarda y cierra la pantalla", desc: 'Después de insertar el elemento, usa <strong>TinyBD1.GuardarValor</strong> con etiqueta <em>"Incidencias"</em> y valor la variable <em>lista</em>. Por último añade el bloque <strong>cerrar pantalla</strong>.', tip: "¡El orden importa! Primero guardar, luego cerrar.", pts: 5 },
     ],
     hints: [
       { text: 'Para crear la variable: en el panel izquierdo, clica "Variables" y arrastra "inicializar global nombre como". Cambia "nombre" por "lista".' },
@@ -259,7 +258,7 @@ const Index = () => {
           points={m.points}
           earnedPoints={getMissionScore(mNum)}
           verified={state.verified}
-          optional={m.optional}
+          optional={(m as any).optional}
         />
 
         <TipBox type="info">{m.intro}</TipBox>
