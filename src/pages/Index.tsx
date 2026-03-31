@@ -82,7 +82,7 @@ const MISSIONS = [
     intro: "¡Último paso! Vuelve a Screen1 y haz que la lista se actualice sola al volver de crear una incidencia. Luego prueba que todo funciona 🏁",
     tasks: [
       { name: "🔄 Tarea 1 — Recarga la lista al volver", desc: 'Crea el bloque <strong>cuando Screen1.OtraPantallaCerrada</strong>. Dentro, vuelve a leer TinyBD y actualiza <strong>VisorDeLista1.AddItems</strong> con la lista nueva para que aparezca la incidencia recién creada.', tip: 'Este bloque es el "truco" que hace que la app se actualice sola al volver.', pts: 10 },
-      { name: "🧪 Tarea 2 — ¡Prueba tu app!", desc: 'Conecta tu dispositivo o usa el emulador. Comprueba que al abrir la app aparecen los ejemplos, que el botón abre Crear_Incidencia, y que al crear una nueva incidencia aparece en la lista al volver.', tip: "Usa AI Companion o el emulador para probar.", pts: 5 },
+      { name: "🧪 Tarea 2 — ¡Prueba tu app! (Opcional)", desc: '<strong>Conecta tu dispositivo o usa el emulador!</strong><br/>Este paso es completamente opcional, puedes pedirle ayuda a tus padres para hacerlo.<br/><br/>En la parte superior de la pantalla de App Inventor está el menú <strong>Generar</strong>. Ahí puedes generar la aplicación para Android (<em>App de Android (.apk)</em>) o para iOS (<em>iOS Ad Hoc (.ipa)</em>).', tip: "Usa AI Companion o el emulador para probar.", pts: 5, optional: true },
     ],
     hints: [
       { text: 'El bloque "cuando Screen1.OtraPantallaCerrada" está en el panel izquierdo al clicar en Screen1. Es casi igual que el bloque Inicializar: lee TinyBD y llama a VisorDeLista1.AddItems. Para probar: "Conectar" → "AI Companion" y escanea el QR.' },
