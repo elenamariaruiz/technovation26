@@ -274,7 +274,7 @@ const Index = () => {
 
         <div className="space-y-2 mt-4">
           {m.tasks.map((task, i) => {
-            const isLocked = i > 0 && !state.tasks[mNum]?.[i - 1];
+            const isLocked = i > 0 && !state.tasks[mNum]?.[i - 1] && !(task as any).optional;
             const isExpanded = i === firstUncompletedIndex;
             const showListExplanation = (m as any).showListExplanationBeforeTask === i;
 
