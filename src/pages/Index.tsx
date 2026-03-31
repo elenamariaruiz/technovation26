@@ -190,7 +190,8 @@ const Index = () => {
   const getMissionScore = (mNum: number) => {
     const mission = MISSIONS[mNum - 1];
     if (!mission) return 0;
-    const taskPts = mission.tasks.reduce((sum: number, t, i) => sum + (state.tasks[mNum]?.[i] ? t.pts : 0), 0);
+    let taskPts = 0;
+    mission.tasks.forEach((t, i) => { if (state.tasks[mNum]?.[i]) taskPts += t.pts; });
     const hintPenalty = (state.hints[mNum] || []).reduce((sum, used, i) => sum + (used ? (mission.hintCosts[i] ?? 0) : 0), 0);
     return Math.max(0, taskPts - hintPenalty);
   };
