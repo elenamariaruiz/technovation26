@@ -199,7 +199,11 @@ const Index = () => {
     ? Math.max(0, MISSIONS.reduce((sum, m) => sum + m.points, 0) - [1, 2, 3, 4].reduce((sum, n) => sum + (state.hints[n] || []).reduce((s, used, i) => s + (used ? (MISSIONS[n - 1]?.hintCosts[i] ?? 0) : 0), 0), 0))
     : [1, 2, 3, 4].reduce((sum, n) => sum + getMissionScore(n), 0);
 
-  const allMissionTasksDone = (mNum: number) => state.tasks[mNum]?.every(Boolean) ?? false;
+  const allMissionTasksDone = (mNum: number) => {
+    const mission = MISSIONS[mNum - 1];
+    if (!mission) return false;
+    return mission.tasks.every((task, i) => (task as any).optional || (state.tasks[mNum]?.[i] ?? false));
+  };
 
   const allVerifDone = Object.keys(verifItems).every(
     (mKey) => verifItems[Number(mKey)].every((item) => state.verif[item.id])
